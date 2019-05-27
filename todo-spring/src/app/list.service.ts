@@ -1,17 +1,20 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Item } from './item';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Subject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListService {
-  dataUrl = "https://localhost:8080";
+  dataUrl = "http://localhost:8080";
   itemsChanged = new Subject<Item[]>();
 
   private items : Item[] = [];
+  private headers = new HttpHeaders().set('Content-Type', 'application/json')
+  .set('Accept', 'application/json');
+
   constructor(private http: HttpClient) {}
 
   getItems(){
@@ -26,14 +29,19 @@ export class ListService {
     this.items.push(item);
     this.itemsChanged.next(this.items.slice());
 
-    this.http.post(this.dataUrl + "/items", this.getItems());
+    this.http.post(this.dataUrl + "/items", item, { headers: this.headers })
+      .subscribe(
+        (response: Response) => {
+          console.log(response);
+        }
+      );
   }
 
   updateItem(index: number, item: Item){
     this.items[index] = item;
     this.itemsChanged.next(this.items.slice());
 
-    this.http.put(this.dataUrl + "/items/" + index, item);
+    this.http.put(this.dataUrl + "/items/" + index, item, { headers: this.headers });
   }
 
   setItems(items: Item[]){

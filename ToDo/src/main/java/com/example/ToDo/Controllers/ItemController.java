@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 public class ItemController {
 
@@ -17,11 +18,13 @@ public class ItemController {
 
     @RequestMapping(method=RequestMethod.GET, value="/items")
     public Iterable<Item> item() {
+        System.out.println("rereretr");
         return itemRepository.findAll();
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/items")
     public Item save(@RequestBody Item item) {
+        System.out.println("Thth");
         itemRepository.save(item);
 
         return item;

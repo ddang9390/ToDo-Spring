@@ -11,9 +11,9 @@ public class Item {
     String id;
     String name;
     String desc;
-    Time time;
+    String time;
 
-    public Item(String name, String desc, Time time){
+    public Item(String name, String desc, String time){
         this.name = name;
         this.desc = desc;
         this.time = time;
@@ -35,11 +35,11 @@ public class Item {
         this.desc = desc;
     }
 
-    public Time getTime(){
+    public String getTime(){
         return time;
     }
 
-    public void setTime(Time time){
+    public void setTime(String time){
         this.time = time;
     }
 }

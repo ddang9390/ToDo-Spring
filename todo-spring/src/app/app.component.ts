@@ -10,13 +10,14 @@ import { Item } from './item';
 })
 export class AppComponent implements OnInit{
   title = 'angular-crud';
-  dataUrl = "https://localhost:8080";
+  dataUrl = "http://localhost:8080";
   constructor(private http: HttpClient,
               private listService: ListService) {}
   ngOnInit(){
     this.http.get(this.dataUrl + "/items")
       .subscribe(
         (items: Item[]) => {
+          console.log(items);
           this.listService.setItems(items);
         }
       )
