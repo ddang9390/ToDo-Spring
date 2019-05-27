@@ -31,12 +31,14 @@ export class ListEditComponent implements OnInit {
   private initForm(){
     let itemName = '';
     let itemDescription = '';
+    let itemTime;
 
 
     if(this.editMode){
       const item = this.listService.getItem(this.id);
       itemName = item.name;
       itemDescription = item.desc;
+      itemTime = item.time;
     }
     else{
 
@@ -45,6 +47,8 @@ export class ListEditComponent implements OnInit {
       'name': new FormControl(itemName, Validators.required),
 
       'desc': new FormControl(itemDescription, Validators.required),
+
+      'time': new FormControl(itemTime, Validators.required)
 
     })
   }
