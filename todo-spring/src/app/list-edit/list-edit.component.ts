@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ListService } from '../list.service';
+import { MinDateDirective } from '../min-date.directive';
 
 @Component({
   selector: 'app-list-edit',
@@ -12,6 +13,8 @@ export class ListEditComponent implements OnInit {
   id: number;
   editMode = false;
   listForm: FormGroup;
+
+  now = new Date();
 
   constructor(private route: ActivatedRoute,
               private listService: ListService,
@@ -33,7 +36,6 @@ export class ListEditComponent implements OnInit {
     let itemDescription = '';
     let itemTime;
 
-
     if(this.editMode){
       const item = this.listService.getItem(this.id);
       itemName = item.name;
@@ -43,15 +45,17 @@ export class ListEditComponent implements OnInit {
     else{
 
     }
+
     this.listForm = new FormGroup({
       'name': new FormControl(itemName, Validators.required),
 
       'desc': new FormControl(itemDescription, Validators.required),
 
-      'time': new FormControl(itemTime, Validators.required)
+      'time': new FormControl(itemTime, [Validators.required, MinDateDirective.dateMinimum()])
 
     })
   }
+
 
 
   onSubmit(){

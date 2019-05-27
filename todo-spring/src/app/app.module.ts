@@ -14,6 +14,7 @@ import { ItemsComponent } from './items/items.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { HeaderComponent } from './header/header.component';
 import { DataService } from './data.service';
+import { MinDateDirective } from './min-date.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DataService } from './data.service';
     ListStartComponent,
     ItemsComponent,
     ItemDetailsComponent,
-    HeaderComponent
+    HeaderComponent,
+    MinDateDirective
   ],
   imports: [
     BrowserModule,
