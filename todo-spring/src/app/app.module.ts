@@ -12,7 +12,6 @@ import { ListEditComponent } from './list-edit/list-edit.component';
 import { ListStartComponent } from './list-start/list-start.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
-import { HeaderComponent } from './header/header.component';
 import { DataService } from './data.service';
 import { MinDateDirective } from './min-date.directive';
 
@@ -25,7 +24,6 @@ import { MinDateDirective } from './min-date.directive';
     ListStartComponent,
     ItemsComponent,
     ItemDetailsComponent,
-    HeaderComponent,
     MinDateDirective
   ],
   imports: [
