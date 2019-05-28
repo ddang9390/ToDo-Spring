@@ -19,13 +19,12 @@ public class ItemController {
 
     @RequestMapping(method=RequestMethod.GET, value="/items")
     public Iterable<Item> item() {
-        System.out.println("rereretr");
         return itemRepository.findAll();
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/items")
     public Item save(@RequestBody Item item) {
-        System.out.println("Thth");
+
         itemRepository.save(item);
 
         return item;
@@ -34,8 +33,8 @@ public class ItemController {
     @RequestMapping(method=RequestMethod.GET, value="/items/{id}")
     public ResponseEntity<Item> show(@PathVariable String id) {
         return itemRepository.findById(id)
-                    .map(item -> ResponseEntity.ok().body(item))
-                    .orElse(ResponseEntity.notFound().build());
+                .map(item -> ResponseEntity.ok().body(item))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/items/{id}")
